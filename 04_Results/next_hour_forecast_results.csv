@@ -1,0 +1,7 @@
+Metric,Value
+Forecast horizon,1 hour
+Algorithm,Random Forest
+Training examples,30388
+Testing examples,7598
+Accuracy percentage,93.18
+Model path,hdfs://localhost:9000/user/abhijeet/traffic_next_hour_rf_model
