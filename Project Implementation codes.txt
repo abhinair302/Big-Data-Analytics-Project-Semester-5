@@ -1,0 +1,57 @@
+1) Open Ubuntu Terminal and enter the following: 
+
+start-dfs.sh
+
+jps
+
+hive --service metastore
+
+2) Open another Ubuntu Terminal and enter the following:
+
+hive --service hiveserver2
+
+3) Open another Ubuntu Terminal and enter the following:
+
+hive -e "SHOW DATABASES;"
+
+hive -e "SHOW TABLES IN traffic_db;"
+
+hive -e "DESCRIBE traffic_db.traffic_data;"
+
+hive -e "SELECT * FROM traffic_db.traffic_data LIMIT 5;"
+
+hive -e "SELECT COUNT(*) FROM traffic_db.traffic_data;"
+
+hive -e "SELECT congestion, COUNT(*) AS record_count FROM traffic_db.traffic_data WHERE congestion IN ('Low','Medium','High') GROUP BY congestion ORDER BY congestion;"
+
+hive -e "SELECT hour, ROUND(AVG(traffic_volume), 2) AS avg_traffic FROM traffic_db.traffic_data GROUP BY hour ORDER BY hour;"
+
+pyspark
+
+spark.sql("SHOW DATABASES").show(truncate=False)
+
+spark.sql("SHOW TABLES IN traffic_db").show(truncate=False)
+
+spark.sql("SELECT COUNT(*) FROM traffic_db.traffic_data").show()
+
+spark.sql("""
+SELECT congestion, COUNT(*) AS records
+FROM traffic_db.traffic_data
+WHERE congestion IN ('Low', 'Medium', 'High')
+GROUP BY congestion
+ORDER BY congestion
+""").show()
+
+exit()
+
+hdfs dfs -ls /user/abhijeet/traffic_rf_model
+
+hdfs dfs -ls /user/abhijeet/traffic_next_hour_rf_model
+
+cd ~/TrafficSense_Project && head -n 6 04_Results/next_hour_forecast_results.csv
+
+head -n 10 ~/TrafficSense_Project/04_Results/feature_importance_without_volume.csv
+
+ls -lh ~/TrafficSense_Project/04_Results/
+
+4) Then, open PowerBI and then select your PowerBi file (.pbix) to view your project Dashboard..
